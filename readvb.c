@@ -10,7 +10,7 @@
 #include "stm32f10x_dma.h"
 
 #define  __TIMES__    20
-#define ADC1_DR_Address ((u32)0x4001244C)
+#define ADC1_DR_Address ((u32)0x4001244C)  //数据寄存器ADC_DR address
 __IO uint16_t AD_Value[2]={0};
 /********adc gpio config  ---PA5 6 7 ****/
 static void ADC1_GPI0_Config() {
