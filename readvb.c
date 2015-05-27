@@ -27,11 +27,11 @@ static  void ADC1_Mode_Config(void) {
 
 	ADC_DeInit(ADC1);
 	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
-	ADC_InitStructure.ADC_ScanConvMode = ENABLE;  //多通道采集
-	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;  //连续转换
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;  //澶氶�氶亾閲囬泦
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;  //杩炵画杞崲
 	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
-	ADC_InitStructure.ADC_NbrOfChannel = 2;  //通道数目	
+	ADC_InitStructure.ADC_NbrOfChannel = 2;  //閫氶亾鏁扮洰	
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_239Cycles5 );
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 2, ADC_SampleTime_239Cycles5 );
 	ADC_Init(ADC1, &ADC_InitStructure);
@@ -48,23 +48,23 @@ static  void ADC1_Mode_Config(void) {
 static void DMA_Config(void)
 {
 	DMA_InitTypeDef DMA_InitStructure;   
-	
+		
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE); 
-    DMA_DeInit(DMA1_Channel1);   
-    DMA_InitStructure.DMA_PeripheralBaseAddr = ADC1_DR_Address;  
-    DMA_InitStructure.DMA_MemoryBaseAddr = (u32)AD_Value;      
-    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;              
-    DMA_InitStructure.DMA_BufferSize = 2;                                          
-    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;   
-    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;        
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;   
-    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      
-    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;   
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High;   
-    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;   
-    DMA_Init(DMA1_Channel1, &DMA_InitStructure);   
-       
-    DMA_Cmd(DMA1_Channel1, ENABLE);   
+	DMA_DeInit(DMA1_Channel1);   
+	DMA_InitStructure.DMA_PeripheralBaseAddr = ADC1_DR_Address;  
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)AD_Value;      
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;              
+	DMA_InitStructure.DMA_BufferSize = 2;                                          
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;   
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;        
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;   
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;   
+	DMA_InitStructure.DMA_Priority = DMA_Priority_High;   
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;   
+	DMA_Init(DMA1_Channel1, &DMA_InitStructure);   
+	       
+	DMA_Cmd(DMA1_Channel1, ENABLE);   
 }
 
 void ADC1_Init(void) {
@@ -82,7 +82,7 @@ uint16_t readVB(void) {
 		v +=AD_Value[1];
 	}
 	printf("v %d vref %d\r\n",v,vref);
-	v = 11 * v * 2500 / vref;   //基准电压2.5V  分压1/11
+	v = 11 * v * 2500 / vref;   //鍩哄噯鐢靛帇2.5V  鍒嗗帇1/11
 	printf("v is %d \r\n", v);
 
 	return v;
